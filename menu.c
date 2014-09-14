@@ -27,10 +27,10 @@
 #define CMD_MAX_LEN 128
 typedef struct DataNode
 {
-	char* cmd;
-	char* info;
+    char* cmd;
+    char* info;
     void (*handler)();
-	struct DataNode* next;
+    struct DataNode* next;
 }DataNode;
 void help();
 static DataNode list[]=
@@ -41,33 +41,34 @@ static DataNode list[]=
 int main()
 {
     char cmd[CMD_MAX_LEN];
-	DataNode *p;
-	while(1)
+    DataNode *p;
+    while(1)
     {
-		printf("Input a cmd number >");
-		scanf("%s",cmd);
-		p=list;
-		while(p!=NULL)
-		{
-			if(!strcmp(p->cmd,cmd))
-			{
-				printf("%s - %s\n",p->cmd,p->info);
+	printf("Input a cmd number >");
+	scanf("%s",cmd);
+	p=list;
+	while(p!=NULL)
+	{
+	    if(!strcmp(p->cmd,cmd))
+	    {
+		printf("%s - %s\n",p->cmd,p->info);
                 if(p->handler==help)
                 {
                     p->handler();
                 }
-				break;
-			}
-			p=p->next;
-		}
+		break;
+	    }
+	    p=p->next;
+	}
         if(p==NULL)
         {
             printf("This is a wrong cmd!\n");
-	    }
+	}
     }
 	
-	return 0;
+    return 0;
 }
+
 void help()
 {
     DataNode *p=list;
